@@ -8,15 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.cg.bookstore.entity.Reviews;
-import com.cg.bookstore.exception.ReviewIdAlreadyExistsException;
 import com.cg.bookstore.exception.ReviewIdDoesNotExistException;
 import com.cg.bookstore.exception.ReviewIsUnAvailableException;
 import com.cg.bookstore.service.ReviewsService;
@@ -59,7 +58,7 @@ public class ReviewsController {
 	}
 
 	@PostMapping("/addReview")
-	public ResponseEntity<Reviews> addReview( @Valid @RequestBody Reviews review) {
+	public ResponseEntity<Reviews> addReview(@Valid @RequestBody Reviews review) {
 		Reviews addReview = reviewService.addReview(review);
 		ResponseEntity<Reviews> ResponseEntityadd = new ResponseEntity<Reviews>(addReview, HttpStatus.OK);
 		return ResponseEntityadd;

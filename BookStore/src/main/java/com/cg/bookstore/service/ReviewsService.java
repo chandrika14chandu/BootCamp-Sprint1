@@ -1,8 +1,8 @@
 package com.cg.bookstore.service;
 
 import java.util.List;
+
 import com.cg.bookstore.entity.Reviews;
-import com.cg.bookstore.exception.ReviewIdAlreadyExistsException;
 import com.cg.bookstore.exception.ReviewIdDoesNotExistException;
 import com.cg.bookstore.exception.ReviewIsUnAvailableException;
 
@@ -13,7 +13,7 @@ import com.cg.bookstore.exception.ReviewIsUnAvailableException;
 
 public interface ReviewsService {
 
-	public Reviews addReview(Reviews review) ;
+	public Reviews addReview(Reviews review);
 
 	public boolean deleteReviewById(String reviewId) throws ReviewIdDoesNotExistException;
 
