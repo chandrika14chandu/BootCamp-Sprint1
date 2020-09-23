@@ -2,12 +2,12 @@ package com.cg.bookstore.service;
 
 import java.util.List;
 import java.util.Random;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.cg.bookstore.dao.ReviewsDao;
 import com.cg.bookstore.entity.Reviews;
-import com.cg.bookstore.exception.CustomerIdAlreadyExistsException;
-import com.cg.bookstore.exception.NoReviewIsAvailableException;
 import com.cg.bookstore.exception.ReviewIdAlreadyExistsException;
 import com.cg.bookstore.exception.ReviewIdDoesNotExistException;
 import com.cg.bookstore.exception.ReviewIsUnAvailableException;
@@ -128,8 +128,7 @@ public class ReviewsServiceImpl implements ReviewsService
 	-Description              :     adding Reviews to the database by calling the method addReview(review)
 *******************************************************************************************************************************/
 	@Override
-	public Reviews addReview(Reviews review)
-			throws ReviewIdAlreadyExistsException, CustomerIdAlreadyExistsException {
+	public Reviews addReview(Reviews review) {
 		review.setReviewId(String.valueOf(random.nextInt(10000000)));
 		return reviewsDao.save(review);
 	}

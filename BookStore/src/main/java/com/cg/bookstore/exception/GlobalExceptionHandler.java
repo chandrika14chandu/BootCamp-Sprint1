@@ -7,8 +7,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+
 @RestControllerAdvice
-class GlobalExceptionHandler 
+class GlobalExceptionHandler
+
+
 {
   @ExceptionHandler(ReviewIdAlreadyExistsException.class)
   public ResponseEntity<ErrorInfo>  handleException(ReviewIdAlreadyExistsException exception,HttpServletRequest request)
@@ -39,5 +42,5 @@ class GlobalExceptionHandler
 	ResponseEntity<ErrorInfo>  responseentity = new ResponseEntity<ErrorInfo>(errorinfo,HttpStatus.NOT_FOUND);
 	return responseentity;
   }
+  
 }
-
