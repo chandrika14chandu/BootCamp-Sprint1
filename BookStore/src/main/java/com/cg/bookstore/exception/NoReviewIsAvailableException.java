@@ -1,13 +1,12 @@
 package com.cg.bookstore.exception;
 
-public class NoReviewIsAvailableException extends Exception 
-{
-  public NoReviewIsAvailableException(String message) 
-  {
-    super(message);
-  }
-  public NoReviewIsAvailableException()
-  {
-    super();
-  }
+public class NoReviewIsAvailableException {
+	public NoReviewIsAvailableException(String message) 
+	  {
+	    super();
+	  }
+	  public NoReviewIsAvailableException()
+	  {
+	    super();
+	  }
 }

@@ -1,13 +1,16 @@
 package com.cg.bookstore.service;
 
 import java.util.List;
+import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.cg.bookstore.dao.ReviewsDao;
 import com.cg.bookstore.entity.Reviews;
+import com.cg.bookstore.exception.CustomerIdAlreadyExistsException;
 import com.cg.bookstore.exception.NoReviewIsAvailableException;
 import com.cg.bookstore.exception.ReviewIdAlreadyExistsException;
 import com.cg.bookstore.exception.ReviewIdDoesNotExistException;
+import com.cg.bookstore.exception.ReviewIsUnAvailableException;
 
 /*******************************************************************************************************************************
 -Author                   :     Chandrika
@@ -18,6 +21,9 @@ import com.cg.bookstore.exception.ReviewIdDoesNotExistException;
 @Service
 public class ReviewsServiceImpl implements ReviewsService
 {
+	
+  @Autowired
+  private Random random;
 	
   @Autowired
   ReviewsDao reviewsDao;
@@ -32,12 +38,12 @@ public class ReviewsServiceImpl implements ReviewsService
 	-Description              :     getting all reviews from the database by calling the method findAllReviews()
 *******************************************************************************************************************************/
   @Override
-  public List<Reviews> findAllReviews() throws NoReviewIsAvailableException 
+  public List<Reviews> findAllReviews() throws ReviewIsUnAvailableException 
   {
     List<Reviews> listOfReviews = reviewsDao.findAll();
 	if(listOfReviews.isEmpty())
 	{
-	  throw new NoReviewIsAvailableException("No Review Is Available in the Reviews List ");
+	  throw new ReviewIsUnAvailableException("No Review Is Available in the Reviews List ");
 	}
 	reviewsDao.findAll();
 	return listOfReviews;
@@ -54,13 +60,13 @@ public class ReviewsServiceImpl implements ReviewsService
 *******************************************************************************************************************************/	
 	
 	@Override
-	public boolean deleteAllReviews() throws NoReviewIsAvailableException 
+	public boolean deleteAllReviews() throws ReviewIsUnAvailableException 
 	{
 	  List<Reviews> listOfReviews = reviewsDao.findAll();
 	  if(listOfReviews.isEmpty())
 	{
 			
-	  throw new NoReviewIsAvailableException("No Review Is Available in the Reviews List for Delete Operation");
+	  throw new ReviewIsUnAvailableException("No Review Is Available in the Reviews List for Delete Operation");
 	}
 	  reviewsDao.deleteAll();;
 	  return true;
@@ -121,19 +127,10 @@ public class ReviewsServiceImpl implements ReviewsService
 	-Created/Modified Date    :     -09-2020
 	-Description              :     adding Reviews to the database by calling the method addReview(review)
 *******************************************************************************************************************************/
-	
 	@Override
-	public Reviews addReview(Reviews review) throws ReviewIdAlreadyExistsException 
-	{
-	  if(reviewsDao.existsById(review.getReviewId()))
-	  {
-	    throw new ReviewIdAlreadyExistsException("Review with reviewId " + review.getReviewId() + " alreadyExists");	
-	  }
-	  if(reviewsDao.existsById(review.getCustomerId()))
-	  {
-			throw new ReviewIdAlreadyExistsException("Review with customerId" +review.getCustomerId()+ " alreadyExists");	
-	  }
-	  Reviews  addReview = reviewsDao.save(review);
-	  return addReview;
-	 }
+	public Reviews addReview(Reviews review)
+			throws ReviewIdAlreadyExistsException, CustomerIdAlreadyExistsException {
+		review.setReviewId(String.valueOf(random.nextInt(10000000)));
+		return reviewsDao.save(review);
+	}
 }

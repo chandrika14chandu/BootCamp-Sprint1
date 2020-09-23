@@ -6,14 +6,15 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.cg.bookstore.entity.Reviews;
+import com.cg.bookstore.exception.CustomerIdAlreadyExistsException;
 import com.cg.bookstore.exception.NoReviewIsAvailableException;
 import com.cg.bookstore.exception.ReviewIdAlreadyExistsException;
 import com.cg.bookstore.exception.ReviewIdDoesNotExistException;
+import com.cg.bookstore.exception.ReviewIsUnAvailableException;
 import com.cg.bookstore.service.ReviewsService;
 
 /*******************************************************************************************************************************
@@ -32,14 +33,14 @@ public class ReviewsController
 	
 
   @GetMapping("/getAllReviews")
-  public List<Reviews>  findAllReviews()throws NoReviewIsAvailableException 
+  public List<Reviews>  findAllReviews()throws ReviewIsUnAvailableException
   {
     return reviewService.findAllReviews();
   }	
 	
 	
   @DeleteMapping("/deleteReview")
-  public boolean deleteAllReviews() throws ReviewIdDoesNotExistException, NoReviewIsAvailableException
+  public boolean deleteAllReviews() throws ReviewIdDoesNotExistException, ReviewIsUnAvailableException
   {
     return reviewService.deleteAllReviews();
   }
@@ -60,7 +61,7 @@ public class ReviewsController
 	
 
   @PostMapping("/addReview")
-  public Reviews  addReview(@RequestBody Reviews review) throws ReviewIdAlreadyExistsException
+  public Reviews  addReview(@RequestBody Reviews review) throws ReviewIdAlreadyExistsException, CustomerIdAlreadyExistsException
   {
     return reviewService.addReview(review);
   }

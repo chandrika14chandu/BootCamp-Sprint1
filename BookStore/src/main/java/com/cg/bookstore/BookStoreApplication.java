@@ -13,4 +13,9 @@ public class BookStoreApplication
   {
     SpringApplication.run(BookStoreApplication.class, args);
   }
+  @Bean
+  public Random generateRandom()
+  {
+    return new Random();	
+  }
 }

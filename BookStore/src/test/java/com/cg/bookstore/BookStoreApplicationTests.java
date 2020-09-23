@@ -14,36 +14,35 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 
 import com.cg.bookstore.dao.ReviewsDao;
 import com.cg.bookstore.entity.Reviews;
+import com.cg.bookstore.exception.CustomerIdAlreadyExistsException;
 import com.cg.bookstore.exception.NoReviewIsAvailableException;
 import com.cg.bookstore.exception.ReviewIdAlreadyExistsException;
+import com.cg.bookstore.exception.ReviewIsUnAvailableException;
 import com.cg.bookstore.service.ReviewsServiceImpl;
 
 @SpringBootTest
-class BookStoreApplicationTests {
-	/*
-	 * @Test void contextLoads() { }
-	 * 
-	 * }
-	 */
+class BookStoreApplicationTests 
+{
+  @Autowired
+  ReviewsServiceImpl  reviewService;
 
-@Autowired
-ReviewsServiceImpl  reviewService;
-
- @MockBean
- ReviewsDao reviewsDao;
+  @MockBean
+  ReviewsDao reviewsDao;
  
  
- @Test
-	public void addReview() throws ReviewIdAlreadyExistsException {
-	 Reviews review=new Reviews();
-	  when(reviewsDao.save(review)).thenReturn(review);
-	  assertEquals(review,reviewService.addReview(review));
-	  }  
+  @Test
+  public void addReview() throws ReviewIdAlreadyExistsException, CustomerIdAlreadyExistsException 
+  {
+    Reviews review=new Reviews();
+    when(reviewsDao.save(review)).thenReturn(review);
+    assertEquals(review,reviewService.addReview(review));
+  }  
  
- @Test
- public void deleteAll() throws NoReviewIsAvailableException {
-	  when(reviewsDao.findAll()).thenReturn(Stream.of(new Reviews()).collect(Collectors.toList()));
- assertEquals(true,reviewService.deleteAllReviews());
- } 
+  @Test
+  public void deleteAll() throws ReviewIsUnAvailableException 
+  {
+    when(reviewsDao.findAll()).thenReturn(Stream.of(new Reviews()).collect(Collectors.toList()));
+    assertEquals(true,reviewService.deleteAllReviews());
+  } 
 }
 
