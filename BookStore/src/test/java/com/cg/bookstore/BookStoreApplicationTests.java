@@ -36,4 +36,10 @@ class BookStoreApplicationTests {
 		when(reviewsDao.findAll()).thenReturn(Stream.of(new Reviews()).collect(Collectors.toList()));
 		assertEquals(true, reviewService.deleteAllReviews());
 	}
+	
+	@Test
+	public void findAll() throws ReviewIsUnAvailableException {
+		when(reviewsDao.findAll()).thenReturn(Stream.of(new Reviews()).collect(Collectors.toList()));
+		assertEquals(true, reviewService.deleteAllReviews());
+	}
 }
