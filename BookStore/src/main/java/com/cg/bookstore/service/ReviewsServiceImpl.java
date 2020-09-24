@@ -11,7 +11,7 @@ import com.cg.bookstore.exception.ReviewIsUnAvailableException;
 
 /*******************************************************************************************************************************
  * -Author : Chandrika 
- * -Created/Modified Date : 00-09-2020 
+ * -Created/Modified Date : 18-09-2020 
  * -Description :ReviewsServiceImpl Class implements services for Reviews Class
  *******************************************************************************************************************************/
 
@@ -26,11 +26,12 @@ public class ReviewsServiceImpl implements ReviewsService
 	ReviewsDao reviewsDao;
 
 /*******************************************************************************************************************************
--Function Name : findAllReviews -Input Parameters : - 
+-Function Name :findAllReviews 
+-Input Parameters : - 
 -Return Type : List of reviews 
 -Throws : ReviewIsUnAvailableException 
 -Author : Chandrika
--Created/Modified Date : -09-2020 
+-Created/Modified Date : 18-09-2020 
 -Description : getting all reviews from the database by calling the method findAllReviews()
 *******************************************************************************************************************************/
 	@Override
@@ -51,7 +52,7 @@ public class ReviewsServiceImpl implements ReviewsService
 -Return Type :boolean 
 -Throws : ReviewIsUnAvailableException 
 -Author : Chandrika
--Created/Modified Date : -09-2020 
+-Created/Modified Date : 18-09-2020 
 -Description : delete all reviews in the database by calling the method deleteAllReviews()
 *******************************************************************************************************************************/
 
@@ -73,7 +74,7 @@ public class ReviewsServiceImpl implements ReviewsService
 * -Return Type :review object 
 * -Throws : ReviewIdDoesNotExistException 
 * -Author : Chandrika
-* -Created/Modified Date : -09-2020 
+* -Created/Modified Date : 18-09-2020 
 * -Description : getting a review from the database by calling the method findReviewById(reviewId)
 *******************************************************************************************************************************/
 
@@ -93,7 +94,7 @@ public class ReviewsServiceImpl implements ReviewsService
 * -Return Type :boolean 
 * -Throws : ReviewIdDoesNotExistException 
 * -Author : Chandrika
-* -Created/Modified Date : -09-2020 
+* -Created/Modified Date : 18-09-2020 
 * -Description : delete reviews by id in the database by calling the method deleteReviewById(reviewId)
 *******************************************************************************************************************************/
 
@@ -116,7 +117,7 @@ public class ReviewsServiceImpl implements ReviewsService
 * -Return Type :addReview object 
 * -Throws : ReviewIdAlreadyExistsException 
 * -Author : Chandrika
-* -Created/Modified Date : -09-2020 
+* -Created/Modified Date : 18-09-2020 
 * -Description : adding Reviews to the database by calling the method addReview(review)
 *******************************************************************************************************************************/
   @Override

@@ -20,7 +20,7 @@ import com.cg.bookstore.service.ReviewsService;
 
 /*******************************************************************************************************************************
  * -Author : Chandrika 
- * -Created/Modified Date : 00-09-2020 
+ * -Created/Modified Date : 18-09-2020 
  * -Description :ReviewsController Class for accessing Reviews services
 *******************************************************************************************************************************/
 
@@ -36,8 +36,8 @@ public class ReviewsController
 	public ResponseEntity<List<Reviews>> findAllReviews() throws ReviewIsUnAvailableException 
 	{
 	  List<Reviews> list = reviewService.findAllReviews();
-	  ResponseEntity<List<Reviews>> listOfTests = new ResponseEntity<List<Reviews>>(list, HttpStatus.OK);
-	  return listOfTests;
+	  ResponseEntity<List<Reviews>> listOfReviews = new ResponseEntity<List<Reviews>>(list, HttpStatus.OK);
+	  return listOfReviews;
 	}
 
 	@DeleteMapping("/deleteReview")
@@ -64,8 +64,8 @@ public class ReviewsController
 	public ResponseEntity<Reviews> addReview(@Valid @RequestBody Reviews review) 
 	{
 	  Reviews addReview = reviewService.addReview(review);
-	  ResponseEntity<Reviews> ResponseEntityadd = new ResponseEntity<Reviews>(addReview, HttpStatus.OK);
-	  return ResponseEntityadd;
+	  ResponseEntity<Reviews> responseEntityAdd = new ResponseEntity<Reviews>(addReview, HttpStatus.OK);
+	  return responseEntityAdd;
 	}
 	
 	@ExceptionHandler(Exception.class)
